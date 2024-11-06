@@ -45,14 +45,14 @@ try:
     assert (
         driver.execute_script("return document.fullscreenElement") is not None
     ), f"Video was not expanded to full screen"
-
-    driver.execute_script(
-        f'browserstack_executor: {{"action": "setSessionStatus", "arguments": {{"status": "passed"}}}}'
-    )
 except Exception as e:
     reason = f"{e.__class__.__name__}: {str(e)}"
     driver.execute_script(
         f'browserstack_executor: {{"action": "setSessionStatus", "arguments": {{"status": "failed", "reason": {json.dumps(reason)}}}}}'
+    )
+else:
+    driver.execute_script(
+        f'browserstack_executor: {{"action": "setSessionStatus", "arguments": {{"status": "passed"}}}}'
     )
 finally:
     driver.quit()
