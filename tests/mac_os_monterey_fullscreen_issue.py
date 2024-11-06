@@ -1,5 +1,6 @@
 import json
 from os import getenv
+from time import sleep
 
 from dotenv import load_dotenv
 from selenium import webdriver
@@ -39,6 +40,7 @@ try:
         (By.CSS_SELECTOR, "button[data-title='Full screen (f)']"))
     )
     fullscreen_button.click()
+    sleep(5)
 
     assert (
         driver.execute_script("return document.fullscreenElement") is not None
